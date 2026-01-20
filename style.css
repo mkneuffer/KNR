@@ -123,11 +123,15 @@ h3 {
 }
 
 .logo {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--primary-teal);
-    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    /* font properties no longer needed for image but removed to clean up */
+}
+
+.logo-img {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
 }
 
 .nav-links {
