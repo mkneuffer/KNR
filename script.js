@@ -1,122 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
+document.addEventListener('DOMContentLoaded', () => {
+    // Reveal Animations on Scroll
+    const revealElements = document.querySelectorAll('[data-reveal]');
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Our AI Consulting Services - KNR Solutions">
-    <title>Services | KNR Solutions</title>
+    const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap"
-        rel="stylesheet">
+        revealElements.forEach((element) => {
+            const elementTop = element.getBoundingClientRect().top;
 
-    <link rel="stylesheet" href="style.css">
-</head>
+            if (elementTop < windowHeight - elementVisible) {
+                element.classList.add('active');
+            }
+        });
+    };
 
-<body>
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">KNR Solutions</a>
-            <ul class="nav-links">
-                <li><a href="services.html" class="active">Services</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html" class="btn-nav">Contact Us</a></li>
-            </ul>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+    window.addEventListener('scroll', revealOnScroll);
+    // Trigger once on load
+    revealOnScroll();
 
-    <header class="page-header">
-        <div class="container">
-            <h1>Our Services</h1>
-            <p>Comprehensive AI strategies tailored to your business needs.</p>
-        </div>
-    </header>
+    // 3D Tilt Effect for Cards
+    const cards = document.querySelectorAll('.service-card');
 
-    <section class="services-content">
-        <div class="container">
-            <div class="services-grid expanded-grid">
-                <!-- Service 1 -->
-                <div class="service-card expandable" id="service-1">
-                    <div class="service-image placeholder-img"></div>
-                    <div class="service-preview">
-                        <h3>Strategic Consulting</h3>
-                        <p>Roadmaps for high-value AI adoption.</p>
-                    </div>
-                    <div class="service-details">
-                        <p>We analyze your current infrastructure and business goals to identify high-impact AI
-                            opportunities. Our strategic roadmaps prioritize ROI and scalability, ensuring you don't
-                            just adopt AI for the sake of it, but to drive tangible growth.</p>
-                        <ul>
-                            <li>Feasibility Analysis</li>
-                            <li>ROI Projection</li>
-                            <li>Risk Assessment</li>
-                        </ul>
-                    </div>
-                </div>
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-                <!-- Service 2 -->
-                <div class="service-card expandable" id="service-2">
-                    <div class="service-image placeholder-img"></div>
-                    <div class="service-preview">
-                        <h3>System Curation</h3>
-                        <p>Selecting and configuring the perfect tools.</p>
-                    </div>
-                    <div class="service-details">
-                        <p>The AI landscape is flooded with tools. We cut through the noise to select the best-in-class
-                            systems for your specific use case. Whether it's open-source LLMs or enterprise APIs, we
-                            handle the selection and configuration.</p>
-                        <ul>
-                            <li>Vendor Selection</li>
-                            <li>Tech Stack Optimization</li>
-                            <li>Custom Configuration</li>
-                        </ul>
-                    </div>
-                </div>
+            const xPct = x / rect.width;
+            const yPct = y / rect.height;
 
-                <!-- Service 3 -->
-                <div class="service-card expandable" id="service-3">
-                    <div class="service-image placeholder-img"></div>
-                    <div class="service-preview">
-                        <h3>Seamless Implementation</h3>
-                        <p>Integration into existing workflows.</p>
-                    </div>
-                    <div class="service-details">
-                        <p>We don't just hand you a report; we build the solution. From setting up RAG
-                            (Retrieval-Augmented Generation) pipelines to automating mundane tasks, we integrate
-                            intelligent systems directly into your daily operations.</p>
-                        <ul>
-                            <li>API Integration</li>
-                            <li>Workflow Automation</li>
-                            <li>Employee Training</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            const rotateX = (0.5 - yPct) * 10; // Max rotation deg
+            const rotateY = (xPct - 0.5) * 10;
 
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <p>KNR Solutions</p>
-                <span class="copyright">&copy; <span id="year">2026</span> KNR Solutions. All rights reserved.</span>
-            </div>
-            <div class="footer-links">
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-            </div>
-        </div>
-    </footer>
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        });
 
-    <script src="script.js"></script>
-</body>
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
 
-</html>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.classList.toggle('no-scroll'); // Optional: prevent body scroll
+        });
+    }
+
+    // Close menu when a link is clicked
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+    });
+
+    // Expandable Service Cards
+    const expandableCards = document.querySelectorAll('.service-card.expandable');
+
+    expandableCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Check if already open
+            const isExpanded = card.classList.contains('expanded');
+
+            // Close all others (accordion style - optional, but cleaner)
+            expandableCards.forEach(c => c.classList.remove('expanded'));
+
+            if (!isExpanded) {
+                card.classList.add('expanded');
+            }
+        });
+    });
+
+    // Dynamic Copyright Year
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+
+    // Smooth Scrolling for Anchors (updated to handle cross-page links if needed, 
+    // but standard anchor behavior covers id jumps on same page. 
+    // Here we just keep simple hash scrolling for same-page compatibility)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#' || targetId.length === 1) return; // Ignore empty anchors
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                // Close mobile menu if open
+                if (navLinks.classList.contains('active')) {
+                    mobileMenuBtn.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});

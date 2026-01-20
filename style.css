@@ -160,7 +160,7 @@ h3 {
 /* Hero Section */
 .hero {
     padding: 180px 0 100px;
-    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.65)), url('images/Gemini_Generated_Image_50gcyw50gcyw50gc.png');
+    background: linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.65)), url('images/Gemini_Generated_Image_50gcyw50gcyw50gc.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
