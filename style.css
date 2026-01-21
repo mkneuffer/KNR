@@ -553,78 +553,88 @@ footer {
     margin: 0 auto;
 }
 
-/* Placeholder Images */
-.placeholder-img {
+/* Service Card Images */
+.service-image {
     width: 100%;
-    height: 200px;
-    background-color: var(--accent-gray);
+    height: 220px;
+    object-fit: cover;
     margin-bottom: 1.5rem;
-    position: relative;
-    overflow: hidden;
+    border-radius: 4px;
+    background-color: var(--accent-gray);
 }
 
-.placeholder-img::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite linear;
-    opacity: 0.5;
+/* Page Hero Backgrounds */
+.services-hero {
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.95)), url('images/hero-services.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-@keyframes shimmer {
-    0% {
-        background-position: 100% 0;
-    }
-
-    100% {
-        background-position: -100% 0;
-    }
+.about-hero {
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.95)), url('images/hero-about.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Services Page Expansion */
+/* Services Page Modal Interaction */
 .services-content {
     padding: 80px 0;
 }
 
-.service-card.expandable {
+.service-card {
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    height: auto;
-    /* Allow growth */
+    /* Ensure other card styles are preserved or re-declared if needed, 
+       but here we just modify what was specifically for expansion */
 }
 
+/* Hide details by default, they will be shown in modal */
 .service-details {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out, opacity 0.5s ease;
-    opacity: 0;
-    margin-top: 0;
+    display: none;
 }
 
-.service-card.expanded .service-details {
-    max-height: 500px;
-    /* Arbitrary large height */
-    opacity: 1;
-    margin-top: 1.5rem;
-    border-top: 1px solid var(--accent-gray);
-    padding-top: 1.5rem;
-}
-
-.service-details ul {
+/* Modal Content Styles - Ensure list bullets are visible */
+#modal-body ul {
     margin-top: 1rem;
     padding-left: 1.5rem;
     list-style: disc;
     color: var(--text-light);
 }
 
-.service-details li {
+#modal-body li {
     margin-bottom: 0.5rem;
+}
+
+#modal-body p {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--primary-teal);
+}
+
+#modal-title {
+    font-size: 1.8rem;
+    color: var(--primary-teal);
+    margin-bottom: 1rem;
+    padding-right: 2rem;
+    /* Avoid overlap with close button */
 }
 
 /* Team Grid (About Page) */

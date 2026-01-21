@@ -64,22 +64,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Expandable Service Cards
-    const expandableCards = document.querySelectorAll('.service-card.expandable');
+    // Service Modal Logic
+    const serviceCards = document.querySelectorAll('.service-card');
+    const modal = document.getElementById('service-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    const closeBtn = document.querySelector('.modal-close');
 
-    expandableCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Check if already open
-            const isExpanded = card.classList.contains('expanded');
+    if (modal && serviceCards.length > 0) {
+        // Open Modal
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('h3').textContent;
+                const details = card.querySelector('.service-details').innerHTML;
 
-            // Close all others (accordion style - optional, but cleaner)
-            expandableCards.forEach(c => c.classList.remove('expanded'));
+                modalTitle.textContent = title;
+                modalBody.innerHTML = details;
+                
+                modal.classList.add('active');
+                document.body.classList.add('no-scroll');
+            });
+        });
 
-            if (!isExpanded) {
-                card.classList.add('expanded');
+        // Close Modal via Button
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+
+        // Close Modal via Outside Click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.classList.remove('no-scroll');
             }
         });
-    });
+
+        // Close Modal via Escape Key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            }
+        });
+    }
 
     // Dynamic Copyright Year
     const yearSpan = document.getElementById('year');
