@@ -4,7 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About KNR Solutions - Our Team and Mission">
+    <meta name="description" content="About KNR Solutions - We bridge the gap between complex AI and business reality.">
+    <meta property="og:title" content="About Us | KNR Solutions">
+    <meta property="og:description" content="We bridge the gap between complex AI and business reality.">
+    <meta property="og:image" content="images/KNR.png">
+    <meta property="og:url" content="https://www.knrsolutions.com/about.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <title>About Us | KNR Solutions</title>
     <link rel="icon" type="image/png" href="images/KNR.png">
 
@@ -19,6 +25,9 @@
 
 <body>
     <nav class="navbar">
+        <div class="scroll-progress-container">
+            <div class="scroll-progress-bar" id="scroll-progress"></div>
+        </div>
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <img src="images/KNR.png" alt="KNR Solutions" class="logo-img">
@@ -62,7 +71,7 @@
             <div class="team-grid">
                 <!-- Team Member 1 -->
                 <div class="team-card">
-                    <img src="images/team/andrew.jpg" alt="Andrew Kovacs" class="member-photo">
+                    <img src="images/team/andrew.jpg" alt="Andrew Kovacs" class="member-photo" loading="lazy">
                     <h3>Andrew Kovacs</h3>
                     <span class="role">Co-Founder & Strategic Director</span>
                     <p class="bio">Leverages deep financial expertise and strategic foresight to ensure AI solutions
@@ -70,7 +79,7 @@
                 </div>
                 <!-- Team Member 2 -->
                 <div class="team-card">
-                    <img src="images/team/matthew.jpg" alt="Matthew Neuffer" class="member-photo">
+                    <img src="images/team/matthew.jpg" alt="Matthew Neuffer" class="member-photo" loading="lazy">
                     <h3>Matthew Neuffer</h3>
                     <span class="role">Co-Founder & Marketing Lead</span>
                     <p class="bio">Combines expertise in marketing and interactive technology to streamline workflows
@@ -78,11 +87,46 @@
                 </div>
                 <!-- Team Member 3 -->
                 <div class="team-card">
-                    <img src="images/team/jamie.jpg" alt="Jamie Rapal" class="member-photo">
+                    <img src="images/team/jamie.jpg" alt="Jamie Rapal" class="member-photo" loading="lazy">
                     <h3>Jamie Rapal</h3>
                     <span class="role">Co-Founder & Tech Lead</span>
                     <p class="bio">Expert in system architecture and security. Builds robust, scalable AI
                         infrastructures that integrate seamlessly into complex enterprise ecosystems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="case-studies-section" style="padding: 80px 0; background-color: var(--surface);">
+        <div class="container">
+            <h2 class="section-title">Case Studies</h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem;">
+                Real-world examples of how we translate AI capabilities into concrete business logic and ROI.</p>
+
+            <div class="services-grid">
+                <!-- Case Study 1 -->
+                <div class="service-card">
+                    <div class="icon-box" style="font-size: 1.2rem;">CS1</div>
+                    <h3>Retail Inventory Prediction</h3>
+                    <p><strong>The Challenge:</strong> A regional retailer struggled with overstocking and stockouts due
+                        to volatile seasonal demand.</p>
+                    <p style="margin-top: 0.5rem;"><strong>The Solution:</strong> We deployed a custom predictive
+                        analytics model using historical sales data and external variables (weather, holidays) to
+                        optimize supply chain orders.</p>
+                    <p style="color: var(--primary); font-weight: 600; margin-top: 1rem;">Result: 22% reduction in
+                        holding costs.</p>
+                </div>
+                <!-- Case Study 2 -->
+                <div class="service-card">
+                    <div class="icon-box" style="font-size: 1.2rem;">CS2</div>
+                    <h3>Automated Support Triage</h3>
+                    <p><strong>The Challenge:</strong> A SaaS company's support team was overwhelmed by Level 1 tickets,
+                        increasing response times to 24+ hours.</p>
+                    <p style="margin-top: 0.5rem;"><strong>The Solution:</strong> We integrated an NLP-driven triage bot
+                        (RAG pipeline) that resolved common queries instantly and routed complex issues to the correct
+                        human agents.</p>
+                    <p style="color: var(--primary); font-weight: 600; margin-top: 1rem;">Result: Response time dropped
+                        to <1 hour.</p>
                 </div>
             </div>
         </div>
